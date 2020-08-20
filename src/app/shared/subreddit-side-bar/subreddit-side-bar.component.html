@@ -2,6 +2,7 @@
     <div style="color: black; font-weight: bold">Browse Subreddits</div>
     <hr />
     <span *ngFor="let subreddit of subreddits">
+        <!-- We haven't implemented view-subreddit component yet -->
         <span class="subreddit-text"><a href="/view-subreddit/{{subreddit.id}}">{{subreddit.name}}</a></span>
         <hr />
     </span>

@@ -16,6 +16,11 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    //add these two lines of code below to solve twice request bug. Not solved yet. 
+    this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
+    this.authService.username.subscribe((data: string) => this.username = data);
+    //*****/
+
     this.isLoggedIn = this.authService.isLoggedIn();
     this.username = this.authService.getUserName();
   }
@@ -26,8 +31,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.router.navigateByUrl('').then(() => {
-      window.location.reload();
-    })
+    // this.router.navigateByUrl('').then(() => {
+    //   window.location.reload();
+    // })
+    this.isLoggedIn = false;
+    this.router.navigateByUrl('');
   }
 }
